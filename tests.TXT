@@ -1,0 +1,1 @@
+drug,drugs,drugged,addiction,addicted,alcohol,alcoholic,cigarette,smoke,ganja,marijuana,shot
