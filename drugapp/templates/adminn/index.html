@@ -1,0 +1,242 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Drug Detction</title>
+<link href="{% static 'admin/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'admin/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Photo Stream Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'admin/js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'admin/js/bootstrap.js' %}"></script>
+<!--startsmothscrolling-->
+    <script type="text/javascript" src="{% static 'admin/js/move-top.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/easing.js' %}"></script>
+ <script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+			});
+		});
+	</script>
+<!--endsmothscrolling-->
+</head>
+<body>
+		<!--header-->
+			<div class="header">
+				<div class="container">
+                    <div class="logo">
+                        <h1>Drug Detection</h1>
+                    </div>
+                                        <form action="{% url 'logout' %}" method="post">{% csrf_token %}
+                                         <input  style="float:right;" type="submit" value="logout" />
+                                        </form>
+
+					</div>
+	
+					<center><u><a href="{% url 'graph' %}" style="color:red">Graph</a></u><span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><u><a href="{% url 'viewuser' %}" style="color:red">View Users</a></u> <span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><u><a href="{% url 'viewnoti' %}" style="color:red">View Notifications</a></u></center>
+
+			</div>
+			<!--header-->
+			<!--banner-->
+				<div class="banner top-banner">
+					<div class="container">
+					<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+{#				<div class="navbar-header">#}
+{#					 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">#}
+{#						<span class="sr-only">Toggle navigation</span>#}
+{#						<span class="icon-bar"></span>#}
+{#						<span class="icon-bar"></span>#}
+{#						<span class="icon-bar"></span>#}
+{#					</button>#}
+{#				</div>#}
+        <!-- Collect the nav links, forms, and other content for toggling -->
+					  </div><!-- /.container-fluid -->
+		</nav>
+	</div>
+</div>
+<!--banner-->
+		<div class="content">
+			<div class="about-section">
+   		<div class="container">
+			<h2>Users</h2>
+   			<div class="about-grids">
+   				 <table class="table table-bordered table-responsive table-hover">
+                    <tr>
+                        <td>Id</td>
+                        <td>First Name</td>
+                        <td>Last Name</td>
+                        <td>Email</td>
+                        <td>Phone Number</td>
+                        <td>User Name</td>
+                        <td>Block/Unblock</td>
+
+                    </tr>
+                     {% for i in users %}
+                         <form action="{% url 'changestate' %}" method="post">{% csrf_token %}
+                         <tr>
+                           <td>{{ i.id }}</td>
+                           <td>{{ i.firstname }}</td>
+                           <td>{{ i.lastname }}</td>
+                           <td>{{ i.email }}</td>
+                           <td>{{ i.pno }}</td>
+                           <td>{{ i.username }}</td>
+                           {% if i.blocked == 0 %}
+                               <input type="hidden" name="id" value="{{ i.id }}">
+                               <input type="hidden" name="state" value="1">
+                               <td><input type="submit" value="Block"></td>
+                            {% else %}
+                               <input type="hidden" name="id" value="{{ i.id }}">
+                               <input type="hidden" name="state" value="0">
+                               <td><input type="submit" value="UnBlock"></td>
+                            {% endif %}
+                         </tr>
+                         </form>
+                     {% endfor %}
+                    </table>
+   					<div class="clearfix"> </div>
+   				</div>
+   			</div>
+      		</div>
+{#			@*why-choose#}
+{#				<div class="why-choose">#}
+{#					<div class="container">#}
+{#						<h3>Why Choose Us ?</h3>#}
+{#						<div class="choose-grids">#}
+{#							<div class="col-md-4 choose-grid">#}
+{#								<h4>1. Vestibulum iaculis</h4>#}
+{#								<p>Mauris asan nulla vel diam. Sed in lacus ut enim adipiscing aliquetulla venenat pede mi, aliquet sit amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortis dignissim.</p>#}
+{#							</div>#}
+{#							<div class="col-md-4 choose-grid">#}
+{#								<h4>2. Mauris asan nulla</h4>#}
+{#								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing ellente ssed dololiquam congu fermentum nisl. Mauris asan nulla vel diam. Sed in lacus ut enim adipiscing aliquetulla venenat pede mi, aliquet sit amet, euismod in, auctor ut.</p>#}
+{#							</div>#}
+{#							<div class="col-md-4 choose-grid">#}
+{#								<h4>3. faucibus risus</h4>#}
+{#								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing ellente ssed dololiquam congu fermentum nisl. Mauris asan nulla vel diam. Sed in lacus ut enim adipiscing aliquetulla venenat pede mi, aliquet sit amet, euismod in, auctor ut.</p>#}
+{#							</div>#}
+{#							<div class="clearfix"></div>#}
+{#						</div>#}
+{#					</div>#}
+{#				</div>*@#}
+{#			<!--why-choose-->#}
+{#			@*team#}
+{#			<div class="team">#}
+{#		<div class="container">#}
+{#			<h3>Our Team</h3>#}
+{#			<div class="team-grids">#}
+{#				<div class="col-md-6 team-grid">#}
+{#					<div class="team-grid-left">#}
+{#						<h4>Mark Johnson </h4>#}
+{#						<p>Adipisci velit, sed quia non numquam eius modi tempora incidunt#}
+{#							ut labore et dolore magnam aliquam quaerat voluptatem</p>#}
+{#					</div>#}
+{#					<div class="team-grid-right">#}
+{#                        <img src="{% static 'admin/images/t1.jpg' %}" alt=" " class="img-responsive" />#}
+{#					</div>#}
+{#					<div class="clearfix"> </div>#}
+{#				</div>#}
+{#				<div class="col-md-6 team-grid">#}
+{#					<div class="team-grid-right aliquam">#}
+{#                        <img src="{% static 'admin/images/t2.jpg' %}" alt=" " class="img-responsive" />#}
+{#					</div>#}
+{#					<div class="team-grid-left non">#}
+{#						<h4>Olivia Grosh </h4>#}
+{#						<p>Adipisci velit, sed quia non numquam eius modi tempora incidunt#}
+{#							ut labore et dolore magnam aliquam quaerat voluptatem</p>#}
+{#					</div>#}
+{##}
+{#					<div class="clearfix"> </div>#}
+{#				</div>#}
+{#				<div class="clearfix"> </div>#}
+{#			</div>#}
+{#			<div class="team-grids">#}
+{#				<div class="col-md-6 team-grid">#}
+{#					<div class="team-grid-left">#}
+{#						<h4>Caroline Beek</h4>#}
+{#						<p>Adipisci velit, sed quia non numquam eius modi tempora incidunt#}
+{#							ut labore et dolore magnam aliquam quaerat voluptatem</p>#}
+{#					</div>#}
+{#					<div class="team-grid-right">#}
+{#                        <img src="{% static 'admin/images/t3.jpg' %}" alt=" " class="img-responsive" />#}
+{#					</div>#}
+{#					<div class="clearfix"> </div>#}
+{#				</div>#}
+{#				<div class="col-md-6 team-grid">#}
+{#					<div class="team-grid-right aliquam">#}
+{#                        <img src="{% static 'admin/images/t4.jpg' %}" alt=" " class="img-responsive" />#}
+{#					</div>#}
+{#					<div class="team-grid-left non">#}
+{#						<h4>Sam Kromstain</h4>#}
+{#						<p>Adipisci velit, sed quia non numquam eius modi tempora incidunt#}
+{#							ut labore et dolore magnam aliquam quaerat voluptatem</p>#}
+{#					</div>#}
+{##}
+{#					<div class="clearfix"> </div>#}
+{#				</div>#}
+{#				<div class="clearfix"> </div>#}
+{#			</div>#}
+{#		</div>#}
+{#	</div>*@#}
+			<!--team-->
+
+				<!--indicate-->
+				<div class="indicate">
+					<div class="container">
+						<div class="indicate-grids">
+							<div class="col-md-3 indicate-grid">
+								<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+								<p>Sydney 7891 St Vincent</p>
+							</div>
+							<div class="col-md-3 indicate-grid">
+								<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+								<p>Telephone :  +1 900 703 7065</p>
+							</div>
+							<div class="col-md-3 indicate-grid">
+								<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+								<p>E-mail : <a href="#"> ********.com</a></p>
+                                </div>
+                                <div class="col-md-3 indicate-grid">
+                                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                                    <p>FAX :  ********</p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--indicate-->
+                <!--footer-->
+            <div class="footer-section">
+                            <div class="container">
+                                <div class="footer-top">
+                            <p>&copy; 2015 Photo Stream. All rights reserved | Design by abcd</p>
+                                        </div>
+                                <script type="text/javascript">
+                            $(document).ready(function() {
+                                /*
+                                var defaults = {
+                                    containerID: 'toTop', // fading element id
+                                    containerHoverID: 'toTopHover', // fading element hover id
+                                    scrollSpeed: 1200,
+                                    easingType: 'linear'
+                                };
+                                */
+
+                                $().UItoTop({ easingType: 'easeOutQuart' });
+
+                            });
+                        </script>
+                    <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+                    </div>
+                </div>
+    </body>
+    </html>
+
+

@@ -1,0 +1,152 @@
+﻿{% load staticfiles %}
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Drug Detction</title>
+<link href="{% static 'admin/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'admin/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Photo Stream Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'admin/js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'admin/js/bootstrap.js' %}"></script>
+<!--startsmothscrolling-->
+    <script type="text/javascript" src="{% static 'admin/js/move-top.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/easing.js' %}"></script>
+
+    <script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+			});
+		});
+    </script>
+    <!--endsmothscrolling-->
+
+</head>
+<body>
+    <!--header-->
+    <div class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><a href="#">Drug Detction</a></h1>
+            </div>
+            <form action="{% url 'logout' %}" method="post">{% csrf_token %}
+                <input style="float:right;" type="submit" value="logout" /></form>
+
+        </div>
+    </div>
+    <!--header-->
+    <!--banner-->
+    <div class="banner">
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav cl-effect-16">
+                            <li><a href="{% url 'uhome' %}">Home</a></li>
+
+
+                            <li><a href="{% url 'gallery' %}">Gallery</a><span class="sr-only">(current)</span><span class="sr-only">(current)</span></li>
+                            <li class="active"><a href="{% url 'viewposts' %}">Posts</a></li>
+							<li><a href="{% url 'editupdate' %}">View/Edit</a></li>
+                           
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+            <div class="banner-center">
+                <h3>Creating quality photos with professional touch</h3>
+                <p>Mauris fermeum dictum magna. Sed loreet aliquam leotellus door dapibus eget elentum.Mauris fermeum dictum magna.</p>
+            </div>
+        </div>
+    </div>
+    <!--banner-->
+    <!--Sharing-->
+    <div class="content">
+        <div class="Sharing">
+            <div class="container">
+                <div class="sharing-grids">
+                   
+                    <div class="col-md-3 sharing-img">
+                        <img src="{% static 'admin/images/p1.jpg' %}" class="img-responsive" alt="" />
+                    </div>
+                    <div>
+                     <div>
+                        <span>
+                            <center><b><u style="font-size:30px;">Posts</u></b></center>
+                        </span>
+                        <br />
+                        
+                           {% for i in ps %}
+                            
+                                <center>
+                                    <div style="border:3px solid red; margin: 100px; width:50%">
+                                        <p style="text-align:left;"><b style="text-align:left;">{{i.userid}}:</b><br /></p><br />
+                                        <center>{{ i.post }}</center>
+                                        <br /><br />
+                                    </div>
+                                </center>
+                            {% endfor %}
+                    </div>
+                    <div class="clerafix"></div>
+                </div>
+            </div>
+        </div>
+        <!--Sharing-->
+        <!-- services -->
+        <!-- //services -->
+        <!--testimonials-->
+
+        <!--//testimonials-->
+
+
+        <!--news-->
+        <!--indicate-->
+
+    <!--indicate-->
+    <!--footer-->
+    <div class="footer-section">
+        <div class="container">
+            <div class="footer-top">
+                <p>&copy; 2015 Photo Stream. All rights reserved | Design by abcd</p>
+            </div>
+            <script type="text/javascript">
+						$(document).ready(function() {
+							/*
+							var defaults = {
+					  			containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear'
+					 		};
+							*/
+
+							$().UItoTop({ easingType: 'easeOutQuart' });
+
+						});
+            </script>
+            <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+        </div>
+    </div>
+</body>
+</html>
